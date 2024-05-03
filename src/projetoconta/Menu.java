@@ -1,5 +1,7 @@
 package projetoconta;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import conta.model.Conta;
 import projetoconta.util.Cores;
@@ -30,6 +32,7 @@ public class Menu {
 			cp1.visualizar();
 			
 			int opcao;
+			
 					
 			while(true) {
 
@@ -54,7 +57,14 @@ public class Menu {
 				System.out.println("Entre com a opção desejada:                          ");
 				System.out.println("                                                     " + Cores.TEXT_RESET);
 				
+				
+				try {
 				opcao = leia.nextInt();
+				} catch (InputMismatchException e) {
+					System.out.println("\nDigite valores inteiros!");
+					leia.nextLine();
+					opcao = 0;
+				}
 					
 				if (opcao == 9) {
 					System.out.println(Cores.TEXT_WHITE_BOLD + "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
@@ -66,50 +76,60 @@ public class Menu {
 				switch (opcao) {
 					case 1:
 						System.out.println(Cores.TEXT_WHITE + "Criar Conta\n\n");
-					
+							keyPress();
 	                    		break;
 					case 2:
 						System.out.println(Cores.TEXT_WHITE + "Listar todas as Contas\n\n");
-						
+							keyPress();
 	                    		break;
 					case 3:
 						System.out.println(Cores.TEXT_WHITE + "Consultar dados da Conta - por número\n\n");
-		
+							keyPress();
 	                    		break;
 					case 4:
 						System.out.println(Cores.TEXT_WHITE + "Atualizar dados da Conta\n\n");
-						
+							keyPress();
 	                    		break;
 					case 5:
 						System.out.println(Cores.TEXT_WHITE + "Apagar a Conta\n\n");
-			
+							keyPress();
 	                   	 	break;
 					case 6:
 						System.out.println(Cores.TEXT_WHITE + "Saque\n\n");
-
+							keyPress();
 	                   	 	break;
 					case 7:
 						System.out.println(Cores.TEXT_WHITE + "Depósito\n\n");
-						
+							keyPress();
 	                    		break;
 					case 8:
 						System.out.println(Cores.TEXT_WHITE + "Transferência entre Contas\n\n");
-						
+							keyPress();
 	                    		break;
 					default:
 						System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n" + Cores.TEXT_RESET);
-	                    		break;
+	                    	keyPress();	
+						break;
 				}
 			}	
 	    }
 
 	    public static void sobre() {
 		System.out.println("\n*********************************************************");
-		System.out.println("Projeto Desenvolvido por: ");
+		System.out.println("Projeto Desenvolvido por: Thamires Martins");
 		System.out.println("Generation Brasil - generation@generation.org");
 		System.out.println("github.com/conteudoGeneration");
 		System.out.println("*********************************************************");
 	   }
 
-	}
-
+	
+		public static void keyPress() {
+			
+			try {
+				System.out.println(Cores.TEXT_RESET + "/n/nPressione Enter para Continuar ");
+				System.in.read();
+			} catch (IOException e) {
+				System.out.println("Você pressionou uma tecla diferente de enter!");
+			}
+		}
+}
